@@ -4,9 +4,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,13 +16,13 @@
 }
 
 .modal {
-  background-color: var(--color-white);
+  background: rgba(18, 18, 18, 0.95);
   border-radius: 1.5rem;
   box-shadow: 
-    0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--color-gray-200);
+    0 20px 25px -5px rgba(0, 0, 0, 0.6),
+    0 10px 10px -5px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   width: 100%;
   max-height: 90vh;
   display: flex;
@@ -30,6 +30,8 @@
   animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   position: relative;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 @keyframes modalSlideIn {
@@ -64,8 +66,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 2rem 2.5rem;
-  border-bottom: 1px solid var(--color-gray-200);
-  background: linear-gradient(to bottom, var(--color-white) 0%, var(--color-gray-50) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
   position: relative;
 }
 
@@ -76,13 +78,13 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--color-gray-300), transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
 .title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--color-black);
+  color: var(--color-white);
   margin: 0;
   letter-spacing: -0.03em;
   line-height: 1.2;
@@ -96,7 +98,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gray-600);
+  color: var(--color-gray-400);
   border-radius: var(--border-radius-md);
   transition: all 0.2s ease;
   width: 36px;
@@ -104,8 +106,8 @@
 }
 
 .closeButton:hover {
-  background-color: var(--color-gray-100);
-  color: var(--color-black);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
   transform: rotate(90deg);
 }
 
@@ -131,12 +133,12 @@
 }
 
 .content::-webkit-scrollbar-thumb {
-  background-color: var(--color-gray-300);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
 }
 
 .content::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-gray-400);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 768px) {

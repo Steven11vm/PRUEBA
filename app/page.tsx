@@ -116,74 +116,84 @@ export default function Home() {
           </div>
         )}
 
-        {assistants.length === 0 ? (
-          <div className={styles.emptyState}>
-            <div className={styles.heroSection}>
-              <div className={styles.heroContent}>
-                <div className={styles.heroBadge}>
-                  <span>IA Avanzada</span>
-                </div>
-                <h1 className={styles.heroTitle}>
-                  Automatiza tus Interacciones con
-                  <span className={styles.heroHighlight}> Asistentes IA</span>
-                </h1>
-                <p className={styles.heroDescription}>
-                  Crea asistentes inteligentes personalizados que gestionan conversaciones, responden preguntas y generan leads las 24 horas del día. Potencia tu negocio con tecnología de vanguardia.
-                </p>
-                <div className={styles.heroFeatures}>
-                  <div className={styles.feature}>
-                    <div className={styles.featureIcon}>⚡</div>
-                    <span>Respuestas instantáneas</span>
-                  </div>
-                  <div className={styles.feature}>
-                    <div className={styles.featureIcon}>🎯</div>
-                    <span>Personalización total</span>
-                  </div>
-                  <div className={styles.feature}>
-                    <div className={styles.featureIcon}>📈</div>
-                    <span>Escalable y eficiente</span>
-                  </div>
-                </div>
-                <Button variant="primary" onClick={handleCreate} size="lg" className={styles.heroButton}>
-                  <FiPlus size={20} />
-                  Crear tu Primer Asistente
-                </Button>
+        <div className={styles.heroSection}>
+          <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>
+              <span>IA Avanzada</span>
+            </div>
+            <h1 className={styles.heroTitle}>
+              Automatiza tus Interacciones con
+              <span className={styles.heroHighlight}> Asistentes IA</span>
+            </h1>
+            <p className={styles.heroDescription}>
+              Crea asistentes inteligentes personalizados que gestionan conversaciones, responden preguntas y generan leads las 24 horas del día. Potencia tu negocio con tecnología de vanguardia.
+            </p>
+            <div className={styles.heroFeatures}>
+              <div className={styles.feature}>
+                <div className={styles.featureIcon}>⚡</div>
+                <span>Respuestas instantáneas</span>
               </div>
-              <div className={styles.heroVisual}>
-                <div className={styles.floatingCard}>
-                  <div className={styles.cardPreview}>
-                    <div className={styles.previewHeader}>
-                      <div className={styles.previewDot}></div>
-                      <div className={styles.previewDot}></div>
-                      <div className={styles.previewDot}></div>
-                    </div>
-                    <div className={styles.previewContent}>
-                      <div className={styles.previewMessage}>
-                        <div className={styles.previewBubble}></div>
-                        <div className={styles.previewBubble}></div>
-                      </div>
-                    </div>
+              <div className={styles.feature}>
+                <div className={styles.featureIcon}>🎯</div>
+                <span>Personalización total</span>
+              </div>
+              <div className={styles.feature}>
+                <div className={styles.featureIcon}>📈</div>
+                <span>Escalable y eficiente</span>
+              </div>
+            </div>
+            {assistants.length === 0 && (
+              <Button variant="primary" onClick={handleCreate} size="lg" className={styles.heroButton}>
+                <FiPlus size={20} />
+                Crear tu Primer Asistente
+              </Button>
+            )}
+          </div>
+          <div className={styles.heroVisual}>
+            <div className={styles.floatingCard}>
+              <div className={styles.cardPreview}>
+                <div className={styles.previewHeader}>
+                  <div className={styles.previewDot}></div>
+                  <div className={styles.previewDot}></div>
+                  <div className={styles.previewDot}></div>
+                </div>
+                <div className={styles.previewContent}>
+                  <div className={styles.previewMessage}>
+                    <div className={styles.previewBubble}></div>
+                    <div className={styles.previewBubble}></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ) : (
-          <div className={styles.grid}>
-            {assistants.map((assistant, index) => (
-              <div
-                key={assistant.id}
-                style={{ animationDelay: `${index * 0.1}s` }}
-                className={styles.cardWrapper}
-              >
-                <AssistantCard
-                  assistant={assistant}
-                  onEdit={handleEdit}
-                  onDelete={handleDeleteClick}
-                />
+        </div>
+
+        {assistants.length > 0 && (
+          <>
+            <div className={styles.sectionHeader}>
+              <div>
+                <h2 className={styles.sectionTitle}>Tus Asistentes</h2>
+                <p className={styles.sectionSubtitle}>
+                  Gestiona y personaliza tus asistentes IA para automatizar interacciones y generar más oportunidades de negocio.
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+            <div className={styles.grid}>
+              {assistants.map((assistant, index) => (
+                <div
+                  key={assistant.id}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className={styles.cardWrapper}
+                >
+                  <AssistantCard
+                    assistant={assistant}
+                    onEdit={handleEdit}
+                    onDelete={handleDeleteClick}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </main>
 

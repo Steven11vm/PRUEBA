@@ -21,26 +21,39 @@ export default function Modal({
   size = 'md',
 }: ModalProps) {
   useEffect(() => {
-    if (isOpen) {
+    if (typeof window === 'undefined') return;
+    
+    if (isOpen && document.body) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    } else if (document.body) {
+      document.body.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      if (typeof window !== 'undefined' && document.body) {
+        document.body.style.overflow = '';
+      }
     };
   }, [isOpen]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        document.removeEventListener('keydown', handleEscape);
+      }
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -68,8 +81,14 @@ export default function Modal({
     </div>
   );
 
-  if (typeof window !== 'undefined') {
-    return createPortal(modalContent, document.body);
+  if (typeof window !== 'undefined' && document.body) {
+    try {
+      return createPortal(modalContent, document.body);
+    } catch (error) {
+      // Fallback si hay problemas con el portal
+      console.error('Error creating portal:', error);
+      return null;
+    }
   }
 
   return null;
